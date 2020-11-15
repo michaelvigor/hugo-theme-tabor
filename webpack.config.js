@@ -10,18 +10,14 @@ const join = (...paths) => path.join(__dirname, ...paths);
 
 module.exports = (env, { mode }) => ({
   resolve: {
-    extensions: [".js", ".css"],
+    extensions: [".js", ".css", ".scss"],
     modules: ["assets", "node_modules"],
   },
   entry: {
     main: join("assets", "js", "menu.js"),
     languageSelector: join("assets", "js", "languageSelector.js"),
     prism: join("assets", "js", "prism.js"),
-    style: join("assets", "css", "style.css"),
-    red: join("assets", "css", "color", "red.css"),
-    blue: join("assets", "css", "color", "blue.css"),
-    green: join("assets", "css", "color", "green.css"),
-    pink: join("assets", "css", "color", "pink.css"),
+    style: join("assets", "scss", "style.scss"),
   },
   output: {
     filename: "[name].js",
@@ -55,7 +51,7 @@ module.exports = (env, { mode }) => ({
         ],
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -68,14 +64,7 @@ module.exports = (env, { mode }) => ({
               importLoaders: 1,
             },
           },
-          {
-            loader: "postcss-loader",
-            options: {
-              config: {
-                path: "postcss.config.js",
-              },
-            },
-          },
+          "sass-loader"
         ],
       },
     ],
@@ -94,13 +83,6 @@ module.exports = (env, { mode }) => ({
   plugins: [
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [join("static/assets")],
-      cleanAfterEveryBuildPatterns: [
-        join("static/assets/style.js"),
-        join("static/assets/blue.js"),
-        join("static/assets/green.js"),
-        join("static/assets/red.js"),
-        join("static/assets/pink.js"),
-      ],
       verbose: true,
     }),
     new MiniCssExtractPlugin({

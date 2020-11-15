@@ -4,16 +4,14 @@
 <meta name="keywords" content="{{ with .Params.Keywords }}{{ delimit . ", " }}{{ else }}{{ $.Site.Params.Keywords }}{{ end }}" />
 <meta name="robots" content="noodp" />
 <link rel="canonical" href="{{ .Permalink }}" />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
 
 {{ template "_internal/google_analytics.html" . }}
 
 <!-- Theme CSS -->
+<link rel='stylesheet' id='tabor-fonts-css'  href='https://fonts.googleapis.com/css?family=Heebo%3A400%2C500%2C800%7CDefault%7CLora%3A400%2C400i%2C700&#038;subset=latin%2Clatin-ext&#038;ver=1.6.14' type='text/css' media='all' />
 <link rel="stylesheet" href="{{ "assets/style.css" | absURL }}">
-{{ if (isset .Params "color") }}
-  <link rel="stylesheet" href="{{ (printf "assets/%s.css" .Params.color) | absURL }}">
-{{ else if and (ne $.Site.Params.ThemeColor "orange") (ne $.Site.Params.ThemeColor "color" "") }}
-  <link rel="stylesheet" href="{{ (printf "assets/%s.css" $.Site.Params.ThemeColor) | absURL }}">
-{{ end }}
 
 <!-- Custom CSS to override theme properties (/static/style.css) -->
 {{ if (fileExists "static/style.css") -}}
@@ -21,12 +19,20 @@
 {{- end }}
 
 <!-- Icons -->
-<link rel="apple-touch-icon" href="{{ "img/apple-touch-icon-192x192.png" | absURL }}">
-{{ if isset $.Site.Params "favicon" }}
-  <link rel="shortcut icon" href="{{ $.Site.Params.favicon | absURL }}">
-{{ else }}
-  <link rel="shortcut icon" href="{{ printf "img/favicon/%s.png" ($.Site.Params.ThemeColor | default "orange") | absURL }}">
-{{ end }}
+{{ $icon := resources.Get "images/avatar.png" }}
+<link rel="icon" href="{{ ($icon.Fill "32x32").Permalink }}" sizes="32x32">
+<link rel="icon" href="{{ ($icon.Fill "57x57").Permalink }}" sizes="57x57">
+<link rel="icon" href="{{ ($icon.Fill "76x76").Permalink }}" sizes="76x76">
+<link rel="icon" href="{{ ($icon.Fill "96x96").Permalink }}" sizes="96x96">
+<link rel="icon" href="{{ ($icon.Fill "128x128").Permalink }}" sizes="128x128">
+<link rel="icon" href="{{ ($icon.Fill "192x192").Permalink }}" sizes="192x192">
+<link rel="icon" href="{{ ($icon.Fill "228x228").Permalink }}" sizes="228x228">
+
+<link rel="shortcut icon" href="{{ ($icon.Fill "196x196").Permalink }}" sizes="196x196">
+
+<link rel="apple-touch-icon" href="{{ ($icon.Fill "120x120").Permalink }}" sizes="120x120">
+<link rel="apple-touch-icon" href="{{ ($icon.Fill "152x152").Permalink }}" sizes="152x152">
+<link rel="apple-touch-icon" href="{{ ($icon.Fill "180x180").Permalink }}" sizes="180x180">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary" />

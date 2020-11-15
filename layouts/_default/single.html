@@ -1,57 +1,58 @@
 {{ define "main" }}
-<div class="post">
-  <h1 class="post-title">
-    <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h1>
-  <div class="post-meta">
-    {{ if .Params.Date }}
-      <span class="post-date">
-        {{ .Date.Format "2006-01-02" }} {{ if $.Site.Params.showLastUpdated }}[{{or $.Site.Params.updatedDatePrefix "Updated"}}: {{ .Lastmod.Format "2006-01-02" }}]{{ end }}
-      </span>
-    {{ end }}
-    {{ with .Params.Author }}
-    <span class="post-author">:: {{ . }}</span>
-    {{ end }}
-  </div>
+  <article class="post type-post hentry">
+    <div class="post-wrapper">
 
-  {{ if .Params.tags }}
-  <span class="post-tags">
-    {{ range .Params.tags }}
-    #<a href="{{ (urlize (printf "tags/%s/" .)) | absLangURL }}">{{ . }}</a>&nbsp;
-    {{ end }}
-  </span>
-  {{ end }}
+      <header class="entry-header top-spacer bottom-spacer">
 
-  {{ if .Params.Cover }}
-    <img src="{{ .Params.Cover | absURL }}" class="post-cover" alt="{{ .Title | plainify | default " " }}" />
-  {{ end }}
+        <h2 class="entry-title h1"><a href="{{ .Permalink }}" rel="bookmark">{{ .Title | markdownify }}</a></h2>
 
-  {{ if .Params.Toc }}
-    <div class="table-of-contents">
-      <h2>
-        {{ if .Params.TocTitle }}
-          {{ .Params.TocTitle }}
-        {{ else if $.Site.Params.TocTitle }}
-          {{ $.Site.Params.TocTitle }}
+        <div class="entry-meta flex items-center medium header-font gray">
+          <span class="posted-on">
+            <span class="screen-reader-text">Posted on</span> 
+            <a href="{{ .Permalink }}" class="posted-on--updated"><span>Updated</span> 
+              <time class="updated" datetime="{{ .Lastmod.Format "2020-11-03T09:32:06-05:00" }}">{{ .Lastmod.Format "January 2, 2006" }}</time>
+              <time class="entry-date published" datetime="{{ .Date.Format "2020-11-02T17:00:00-05:00"}}">{{ .Date.Format "January 2, 2006" }}</time>
+            </a>
+          </span>
+          <span class="byline ">
+            <span>by 
+              <span class="author vcard">
+                <a class="url fn n" href="{{ .Permalink }}">{{.Params.Author}}</a>
+              </span>
+            </span>
+          </span>
+        </div>
+      </header>
+
+      {{ if .Params.cover }}
+        {{ $cover := resources.Get .Params.cover }}
+        {{ if strings.HasSuffix .Params.cover "svg" }}
+          <div class="entry-media bottom-spacer center-align  ">
+            <div class="entry-media__figure-wrapper margin-auto" style="max-width:1736px">
+              <figure>
+                <img src="{{ $cover.Permalink }}"  alt="{{ .Title | plainify | default " " }}" style="width: 100%;" />
+              </figure>
+            </div>
+          </div>
         {{ else }}
-          Table of Contents
+          {{ $cover := resources.Get .Params.cover }}
+          {{ $cover_lazy := $cover.Resize "40x Gaussian" }}
+          {{ $cover_lazy = $cover_lazy.Content | base64Encode }}
+          <div class="entry-media bottom-spacer center-align  ">
+            <div class="entry-media__figure-wrapper margin-auto" style="max-width:1736px">
+              <figure>
+                <img data-src="{{ $cover.Permalink }}" data-srcset="{{ ($cover.Resize "434x").RelPermalink }} 434w, {{ ($cover.Resize "868x").RelPermalink }} 868w, {{ ($cover.Resize "1736x").RelPermalink }} 1736w" sizes="90vw, (min-width: 600px) 90vw, 60vw" alt="{{ .Title | plainify | default " " }}" src="{{ print "data:image/jpeg;base64," $cover_lazy | safeURL }}" class="lozad" style="width: 100%;">
+              </figure>
+            </div>
+          </div>
         {{ end }}
-      </h2>
-      {{ .TableOfContents }}
-    </div>
-  {{ end }}
+      {{ end }}
 
-  <div class="post-content">
-    {{- with .Content -}}
-      <div>
-        {{ . | replaceRE "(<h[1-9] id=\"([^\"]+)\".+)(</h[1-9]+>)" `${1}<a href="#${2}" class="hanchor" ariaLabel="Anchor">&#8983;</a> ${3}` | safeHTML }}
+      <div class="entry-content">
+        {{ .Content }}
       </div>
-    {{- end -}}
-  </div>
 
-  {{ if eq .Type $.Site.Params.contentTypeName }}
-  {{ partial "posts_pagination.html" . }}
-  {{ end }}
 
-  {{ partial "comments.html" . }}
-</div>
+    </div>
+  </article>
 {{ end }}

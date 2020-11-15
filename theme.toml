@@ -1,13 +1,13 @@
-name = "terminal"
-license = "MIT"
-licenselink = "https://github.com/panr/hugo-theme-terminal/blob/master/LICENSE.md"
-description = "A simple, retro theme for Hugo."
-homepage = "https://github.com/panr/hugo-theme-terminal/"
-tags = ["blog", "clean", "customizable", "dark", "highlighting", "minimal", "monotone", "multilingual", "personal", "responsive", "simple", "technical", "retro"]
+name = "Tabor"
+license = "GPL-2.0"
+licenselink = "https://github.com/michaelvigor/hugo-theme-tabor/blob/master/LICENSE.md"
+description = "A port of the Wordpress Tabor theme to Hugo"
+homepage = "https://github.com/michaelvigor/hugo-theme-tabor/"
+tags = ["blog"]
 features = ["blog", "shortcode", "syntax highlighting"]
 min_version = 0.74
 
 [author]
-  name = "panr"
-  homepage = "https://radoslawkoziel.pl"
-  twitter = "https://twitter.com/panr"
+  name = "Michael Vigor"
+  homepage = "https://michaelvigor.dev"
+  twitter = "https://twitter.com/michaelvigor"

@@ -1,34 +1,10 @@
-# Terminal
+# Tabor Theme
 
-![Terminal](https://github.com/panr/hugo-theme-terminal/blob/master/images/screenshot.png?raw=true)
+This is a port of the Wordpress [Tabor theme](https://github.com/themebeans/tabor) into a Hugo theme. Only a subset of the templates from the original theme has been migrated over, as there are a number of templates and styles for specific Wordpress plugins.
 
-### DEMO - https://hugo-terminal.now.sh/
+The Hugo theme [Terminal](https://github.com/panr/hugo-theme-terminal/) was used as a starting off point, and then the templates and styles were imported from Tabor for it to match as closely as possible the original.
 
-<a href="https://www.buymeacoffee.com/panr" target="_blank"><img src="https://res.cloudinary.com/panr/image/upload/v1579374705/buymeacoffee_y6yvov.svg" alt="Buy Me A Coffee" ></a>
-
----
-
-- [Features](#features)
-- [Built-in shortcodes](#built-in-shortcodes)
-- [Code highlighting](#code-highlighting)
-- [How to start](#how-to-start)
-- [How to run your site](#how-to-run-your-site)
-- [How to configure](#how-to-configure)
-- [Post archetype](#post-archetype)
-- [Add-ons](#add-ons)
-- [How to (safely) edit the theme](#how-to-edit)
-- [Found a bug?](#bug)
-- [New cool idea or feature](#feature)
-- [Terminal theme user?](#terminal-theme-user)
-- [Sponsoring](#sponsoring)
-- [Licence](#licence)
-
-## Features
-
-- **5 duotone themes**, depending on your preferences (orange is default, red, blue, green, pink)
-- [**Fira Code**](https://github.com/tonsky/FiraCode) as default monospaced font. It's gorgeous!
-- **really nice duotone**, custom syntax highlighting based on [**PrismJS**](https://prismjs.com)
-- fully responsive
+A live demo of this can be seen at [https://michaelvigor.dev](https://michaelvigor.dev).
 
 #### Built-in shortcodes
 
@@ -62,32 +38,20 @@
   {{< /code >}}
   ```
 
-#### Code highlighting
-
-A custom syntax highlighting based on PrismJS. All you need to do is to wrap you code like this:
-
-````
-```html
-  // your code here
-```
-````
-
-**Supported languages**: bash/shell, css, clike, javascript, apacheconf, actionscript, applescript, c, csharp, cpp, coffeescript, ruby, csp, css-extras, diff, django, docker, elixir, elm, markup-templating, erlang, fsharp, flow, git, go, graphql, less, handlebars, haskell, http, java, json, kotlin, latex, markdown, makefile, objectivec, ocaml, perl, php, php-extras, r, sql, processing, scss, python, jsx, typescript, toml, reason, textile, rust, sass, stylus, scheme, pug, swift, yaml, haml, twig, tsx, vim, visual-basic, wasm.
-
 ## How to start
 
-You can download the theme manually by going to [https://github.com/panr/hugo-theme-terminal.git](https://github.com/panr/hugo-theme-terminal.git) and pasting it to `themes/terminal` in your root directory.
+You can download the theme manually by going to [https://github.com/michaelvigor/hugo-theme-tabor.git](https://github.com/michaelvigor/hugo-theme-tabor.git) and pasting it to `themes/tabor` in your root directory.
 
 You can also clone it directly to your Hugo folder:
 
 ```
-$ git clone https://github.com/panr/hugo-theme-terminal.git themes/terminal
+$ git clone https://github.com/michaelvigor/hugo-theme-tabor.git themes/tabor
 ```
 
 If you don't want to make any radical changes, it's the best option, because you can get new updates when they are available. You can also include it as a git submodule:
 
 ```
-$ git submodule add https://github.com/panr/hugo-theme-terminal.git themes/terminal
+$ git submodule add https://github.com/michaelvigor/hugo-theme-tabor.git themes/tabor
 ```
 
 ⚠️ **The theme needs at least Hugo version 0.74.x**.
@@ -97,7 +61,7 @@ $ git submodule add https://github.com/panr/hugo-theme-terminal.git themes/termi
 If you installed all needed `npm` dependencies, then you can run:
 
 ```
-$ hugo server -t terminal
+$ hugo server -t tabor
 ```
 
 and go to `localhost:1313` in your browser. From now on all the changes you make will go live, so you don't need to refresh your browser every single time.
@@ -109,102 +73,120 @@ The theme doesn't require any advanced configuration. Just copy:
 ```toml
 baseurl = "/"
 languageCode = "en-us"
-theme = "terminal"
+theme = "tabor"
 paginate = 5
+pygmentsUseClasses = true
 
 [params]
-  # dir name of your main content (default is `content/posts`).
-  # the list of set content will show up on your index page (baseurl).
-  contentTypeName = "posts"
+  contentTypeName = "post"
+  showSubscribeWidget = false
 
-  # ["orange", "blue", "red", "green", "pink"]
-  themeColor = "orange"
+  # Control which icons are loaded on the page
+  icons = [
+    "icon-email",
+    "icon-github",
+    "icon-twitter"
+#   "icon-themebeans",
+#   "icon-play",
+#   "icon-settings",
+#   "icon-settings-2",
+#   "icon-settings-3",
+#   "icon-arrow-down",
+#   "icon-chain",
+#   "icon-down",
+#   "icon-right",
+#   "icon-left",
+#   "icon-search",
+#   "icon-facebook-share",
+#   "icon-thumb-tack",
+#   "icon-lock",
+#   "icon-500px",
+#   "icon-bandsintown",
+#   "icon-behance",
+#   "icon-chownow",
+#   "icon-codepen",
+#   "icon-dribbble",
+#   "icon-dropbox",
+#   "icon-facebook",
+#   "icon-facebook-mask",
+#   "icon-flickr",
+#   "icon-foursquare",
+#   "icon-googleplay",
+#   "icon-google",
+#   "icon-google-mask",
+#   "icon-instagram",
+#   "icon-itunes",
+#   "icon-linkedin",
+#   "icon-medium",
+#   "icon-meetup",
+#   "icon-pinterest",
+#   "icon-pinterest-mask",
+#   "icon-reddit",
+#   "icon-smugmug",
+#   "icon-snapchat-ghost",
+#   "icon-soundcloud",
+#   "icon-spotify",
+#   "icon-stumbleupon",
+#   "icon-tumblr",
+#   "icon-twitch",
+#   "icon-twitter-mask",
+#   "icon-vevo",
+#   "icon-vimeo",
+#   "icon-vine",
+#   "icon-vsco",
+#   "icon-wordpress",
+#   "icon-yelp",
+#   "icon-youtube",
+#   "icon-houzz",
+#   "icon-docker-hub",
+#   "icon-rss",
+#   "icon-quora",
+#   "quora",
+#   "icon-amazon",
+#   "amazon"
+  ]
 
-  # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 2
+  [params.author]
+    name = "Michael Vigor"
+    email = "m@michaelvigor.dev"
 
-  # show selector to switch language
-  showLanguageSelector = false
+  [params.social]
+    twitter = "michaelvigor"
+    github = "michaelvigor"
 
-  # set theme to full screen width
-  fullWidthTheme = false
+  [params.header_nav]
+    [params.header_nav.about]
+      title = "About"
+      link = "/about"
 
-  # center theme with default width
-  centerTheme = false
+  [params.footer_nav]
+    [params.footer_nav.about]
+      title = "About"
+      link = "/about"
 
-  # set a custom favicon (default is a `themeColor` square)
-  # favicon = "favicon.ico"
+    [params.footer_nav.twitter]
+      title = "Twitter"
+      link = "https://www.twitter.com/michaelvigor"
 
-  # set post to show the last updated
-  # If you use git, you can set `enableGitInfo` to `true` and then post will automatically get the last updated
-  showLastUpdated = false
-  # Provide a string as a prefix for the last update date. By default, it looks like this: 2020-xx-xx [Updated: 2020-xx-xx] :: Author
-  # updatedDatePrefix = "Updated"
 
-  # set all headings to their default size (depending on browser settings)
-  # it's set to `true` by default
-  # oneHeadingSize = false
-
-[params.twitter]
-  # set Twitter handles for Twitter cards
-  # see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#card-and-content-attribution
-  # do not include @
-  creator = ""
-  site = ""
-
-[languages]
-  [languages.en]
-    languageName = "English"
-    title = "Terminal"
-    subtitle = "A simple, retro theme for Hugo"
-    owner = ""
-    keywords = ""
-    copyright = ""
-    menuMore = "Show more"
-    readMore = "Read more"
-    readOtherPosts = "Read other posts"
-    missingContentMessage = "Page not found..."
-    missingBackButtonLabel = "Back to home page"
-
-    [languages.en.params.logo]
-      logoText = "Terminal"
-      logoHomeLink = "/"
-
-    [languages.en.menu]
-      [[languages.en.menu.main]]
-        identifier = "about"
-        name = "About"
-        url = "/about"
-      [[languages.en.menu.main]]
-        identifier = "showcase"
-        name = "Showcase"
-        url = "/showcase"
-```
-
-to `config.toml` file in your Hugo root directory and change params fields. In case you need, here's [a YAML version](https://gist.github.com/panr/9eeea6f595c257febdadc11763e3a6d1).
-
-**NOTE:** Please keep in mind that currently `main menu` doesn't support nesting.
+to `config.toml` file in your Hugo root directory and change params fields.
 
 ## Post archetype
 
-See the basic `post` file params supported by the theme — https://github.com/panr/hugo-theme-terminal/blob/master/archetypes/posts.md
+See the basic `post` file params supported by the theme — https://github.com/michaelvigor/hugo-theme-tabor/blob/master/archetypes/posts.md
 
 ## Add-ons
 
-- **Comments** — for adding comments to your blog posts please take a look at `layouts/partials/comments.html` https://github.com/panr/hugo-theme-terminal/blob/master/layouts/partials/comments.html.
-- **Extended Head** — please take a look at `layouts/partials/extended_head.html` https://github.com/panr/hugo-theme-terminal/blob/master/layouts/partials/extended_head.html
-- **Extended Footer** — please take a look at `layouts/partials/extended_footer.html` https://github.com/panr/hugo-theme-terminal/blob/master/layouts/partials/extended_footer.html
+- **Comments** — for adding comments to your blog posts please take a look at `layouts/partials/comments.html` https://github.com/michaelvigor/hugo-theme-tabor/blob/master/layouts/partials/comments.html.
+- **Extended Head** — please take a look at `layouts/partials/extended_head.html` https://github.com/michaelvigor/hugo-theme-tabor/blob/master/layouts/partials/extended_head.html
+- **Extended Footer** — please take a look at `layouts/partials/extended_footer.html` https://github.com/michaelvigor/hugo-theme-tabor/blob/master/layouts/partials/extended_footer.html
 
 ## How to (safely) edit the theme <a id="how-to-edit" />
-
-If you have to override only some of the styles, you can do this easily by adding `static/style.css` in your root directory and point things you want to change.
-
-To change something directly in the theme, you have to go to `themes/terminal` and modify the files.
 
 First, you need to install Node dependencies. To do so, go to the theme directory (from your Hugo root directory):
 
 ```bash
- $ cd themes/terminal
+ $ cd themes/tabor
 ```
 
  then run:
@@ -229,39 +211,8 @@ $ yarn build
 
 To see the changes (remember to restart `hugo server`).
 
-## Found a bug? <a id="bug" />
-
-If you spot any bugs, please use [Issue Tracker](https://github.com/panr/hugo-theme-terminal/issues) or create a new [Pull Request](https://github.com/panr/hugo-theme-terminal/pulls) to fix the issue.
-
-## New cool idea or feature? <a id="feature" />
-
-The theme is in constant development since 2019 and has got many cool features that helped many of you and made the theme better. But there were also many features that I wasn't sure about because I want to keep the theme as simple as possible.
-
-So, let's say you have an idea of how to extend the theme. That's cool and you're welcome to do that, just follow these steps:
-
-- fork the theme
-- implement the feature
-- write an instruction how to use the feature
-- give a working example of the implementation for other users
-- add info about your work to `COMMUNITY-FEATURES.md`
-- make a PR with edited `COMMUNITY-FEATURES.md`
-
-This will help keeping the theme close to its roots, and also allow anyone who wishes to improve it and match their needs, to do whatever they want.
-
-Sounds OK? Cool, let's rock! 🤘
-
-## Terminal theme user?
-
-I'd be happy to know more about you and what you are doing. If you want to share it, please make a contribution and [add your site to the list](https://github.com/panr/hugo-theme-terminal/blob/master/USERS.md)! 🤗
-
-## Sponsoring
-
-If you like my work and want to support the development of the project, now you can! Just:
-
-<a href="https://www.buymeacoffee.com/panr" target="_blank"><img src="https://res.cloudinary.com/panr/image/upload/v1579374705/buymeacoffee_y6yvov.svg" alt="Buy Me A Coffee" ></a>
-
 ## License
 
-Copyright © 2019-2020 Radosław Kozieł ([@panr](https://twitter.com/panr))
+Copyright © 2020 Michael Vigor ([@michaelvigor](https://twitter.com/michaelvigor))
 
-The theme is released under the MIT License. Check the [original theme license](https://github.com/panr/hugo-theme-terminal/blob/master/LICENSE.md) for additional licensing information.
+The Terminal theme is released under a MIT License. The original Tabor theme has been released under a GPL-V2 License.  As this theme is a derivative, it is also released under the GPL-V2 License.  Check the [license](https://github.com/michaelvigor/hugo-theme-tabor/blob/master/LICENSE.md) for additional licensing information.

@@ -1,13 +1,64 @@
-<header class="header">
-  <div class="header__inner">
-    <div class="header__logo">
-      {{ partial "logo.html" . }}
-    </div>
-    {{ if len $.Site.Menus }}
-      <div class="menu-trigger">menu</div>
-    {{ end }}
-  </div>
-  {{ if len $.Site.Menus }}
-    {{ partial "menu.html" . }}
-  {{ end }}
-</header>
+<header id="masthead" class="site-header drop-in drop-in--from-top drop-in--js drop-in--pinned drop-in--top" role="banner">
+
+		<div class="container max-width">
+
+			<div class="flex justify-between">
+
+				<div class="flex justify-start items-center">
+
+          <a href="{{ absURL "/" }}" class="custom-logo-link site-logo " rel="home" aria-current="page">
+            {{ $image := resources.Get "images/avatar.png" }}
+            <img width="150" height="150" src="{{ ($image.Fill "150x150").RelPermalink }}" class="custom-logo initial loading" alt="{{ .Site.Params.author.name }}" srcset="{{ ($image.Fill "150x150").RelPermalink }} 150w, {{ ($image.Fill "120x120").RelPermalink }} 120w" sizes="(max-width: 150px) 100vw, 150px">
+          </a>
+					
+						<span class="sep"></span>
+
+						<nav class="social-navigation" aria-label="Social Menu">
+
+							<div class="menu-social-container">
+                <ul id="menu-social" class="header-font medium smooth gray list-reset">
+                  {{ if isset .Site.Params.social "twitter" }}
+                  <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://twitter.com/{{ .Site.Params.social.twitter }}"><span class="screen-reader-text">Twitter</span><svg class="icon icon-twitter" aria-hidden="true" role="img"> <use href="#icon-twitter" xlink:href="#icon-twitter"></use> </svg></a></li>
+                  {{ end }}
+                  {{ if isset .Site.Params.social "twitter" }}
+                  <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://github.com/{{ .Site.Params.social.github }}"><span class="screen-reader-text">Github</span><svg class="icon icon-github" aria-hidden="true" role="img"> <use href="#icon-github" xlink:href="#icon-github"></use> </svg></a></li>
+                  {{ end }}
+                  {{ if isset .Site.Params.social "email" }}
+                  <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="mailto:{{ .Site.Params.social.email }}"><span class="screen-reader-text">Email</span><svg class="icon icon-email" aria-hidden="true" role="img"> <use href="#icon-email" xlink:href="#icon-email"></use> </svg></a></li>
+                  {{ end }}
+                  </ul></div>
+						</nav>
+
+									</div>
+
+				<div class="flex items-center">
+
+					
+					<nav id="site-navigation" class="main-navigation nav primary flex items-center justify-end" role="navigation" aria-label="Primary Menu">
+
+													<button class="menu-toggle" aria-controls="top-menu" aria-expanded="false">
+								<span class="screen-reader-text">Menu</span>
+							</button>
+
+							<div class="menu-primary-container">
+                <ul id="menu-primary" class="primary-menu header-font medium smooth gray list-reset">
+                  {{ range .Site.Params.header_nav }}
+                  <li class="menu-item">
+                    <a href="{{ .link }}">{{ .title }}</a>
+                  </li>
+                  {{ end }}
+                </ul>
+              </div>
+						
+
+				</div>
+			
+					</nav>
+
+					
+				</div>
+
+			</div>
+		</div>
+
+	</header>

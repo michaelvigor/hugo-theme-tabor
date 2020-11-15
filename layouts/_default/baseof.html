@@ -6,22 +6,23 @@
   {{ end }}
   {{ partial "head.html" . }}
 </head>
-<body class="{{- ( or .Params.color $.Site.Params.ThemeColor ) -}}">
-{{ $container := cond $.Site.Params.FullWidthTheme "container full" (cond $.Site.Params.CenterTheme "container center" "container") }}
+<body class="no-js no-svg">
+  <div id="page" class="site top-spacer bottom-spacer">
 
-<div class="{{- $container -}}{{- cond ($.Site.Params.oneHeadingSize | default true) " headings--one-size" "" }}">
+    <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 
-  {{ partial "header.html" . }}
+    {{ partial "header.html" . }}
 
-  <div class="content">
-    {{ block "main" . }}
+    <div id="content" class="site-content">
+      <main id="main" class="site-main" role="main">
+      {{ block "main" . }}
+      {{ end }}
+      </main>
+    </div>
+
+    {{ block "footer" . }}
+      {{ partial "footer.html" . }}
     {{ end }}
   </div>
-
-  {{ block "footer" . }}
-    {{ partial "footer.html" . }}
-  {{ end }}
-</div>
-
 </body>
 </html>
