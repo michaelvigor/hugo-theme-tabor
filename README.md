@@ -1,4 +1,4 @@
-# Tabor Theme
+# Hugo Tabor Theme
 
 This is a port of the Wordpress [Tabor theme](https://github.com/themebeans/tabor) into a Hugo theme. Only a subset of the templates from the original theme has been migrated over, as there are a number of templates and styles for specific Wordpress plugins.
 
@@ -167,7 +167,7 @@ pygmentsUseClasses = true
     [params.footer_nav.twitter]
       title = "Twitter"
       link = "https://www.twitter.com/michaelvigor"
-
+```
 
 to `config.toml` file in your Hugo root directory and change params fields.
 
