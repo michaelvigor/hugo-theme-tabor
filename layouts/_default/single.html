@@ -14,23 +14,17 @@
               <time class="entry-date published" datetime="{{ .Date.Format "2020-11-02T17:00:00-05:00"}}">{{ .Date.Format "January 2, 2006" }}</time>
             </a>
           </span>
-          <span class="byline ">
-            <span>by 
-              <span class="author vcard">
-                <a class="url fn n" href="{{ .Permalink }}">{{.Params.Author}}</a>
-              </span>
-            </span>
-          </span>
         </div>
       </header>
 
       {{ if .Params.cover }}
         {{ $cover := resources.Get .Params.cover }}
         {{ if strings.HasSuffix .Params.cover "svg" }}
+          {{ $cover_alt := resources.Get .Params.cover_alt }}
           <div class="entry-media bottom-spacer center-align  ">
             <div class="entry-media__figure-wrapper margin-auto" style="max-width:1736px">
               <figure>
-                <img src="{{ $cover.Permalink }}"  alt="{{ .Title | plainify | default " " }}" style="width: 100%;" />
+                <img width="{{ $cover_alt.Width }}" height="{{ $cover_alt.Height }}"src="{{ $cover.Permalink }}"  alt="{{ .Title | plainify | default " " }}" style="width: 100%;" />
               </figure>
             </div>
           </div>
@@ -41,7 +35,7 @@
           <div class="entry-media bottom-spacer center-align  ">
             <div class="entry-media__figure-wrapper margin-auto" style="max-width:1736px">
               <figure>
-                <img data-src="{{ $cover.Permalink }}" data-srcset="{{ ($cover.Resize "434x").RelPermalink }} 434w, {{ ($cover.Resize "868x").RelPermalink }} 868w, {{ ($cover.Resize "1736x").RelPermalink }} 1736w" sizes="90vw, (min-width: 600px) 90vw, 60vw" alt="{{ .Title | plainify | default " " }}" src="{{ print "data:image/jpeg;base64," $cover_lazy | safeURL }}" class="lozad" style="width: 100%;">
+                <img width="{{ $cover.Width }}" height="{{ $cover.Height }}" data-src="{{ $cover.Permalink }}" data-srcset="{{ ($cover.Resize "434x").RelPermalink }} 434w, {{ ($cover.Resize "868x").RelPermalink }} 868w, {{ ($cover.Resize "1736x").RelPermalink }} 1736w" sizes="90vw, (min-width: 600px) 90vw, 60vw" alt="{{ .Title | plainify | default " " }}" src="{{ print "data:image/jpeg;base64," $cover_lazy | safeURL }}" class="lozad" style="width: 100%;">
               </figure>
             </div>
           </div>

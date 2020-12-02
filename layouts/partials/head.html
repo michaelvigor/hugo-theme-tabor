@@ -10,13 +10,10 @@
 {{ template "_internal/google_analytics.html" . }}
 
 <!-- Theme CSS -->
-<link rel='stylesheet' id='tabor-fonts-css'  href='https://fonts.googleapis.com/css?family=Heebo%3A400%2C500%2C800%7CDefault%7CLora%3A400%2C400i%2C700&#038;subset=latin%2Clatin-ext&#038;ver=1.6.14' type='text/css' media='all' />
-<link rel="stylesheet" href="{{ "assets/style.css" | absURL }}">
-
-<!-- Custom CSS to override theme properties (/static/style.css) -->
-{{ if (fileExists "static/style.css") -}}
-  <link rel="stylesheet" href="{{ "style.css" | absURL }}">
-{{- end }}
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@500;800&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" rel="preload" as="style">
+{{ $css := resources.Get "style.css" }}
+{{ $style := $css | resources.Minify }}
+<link rel="stylesheet" href="{{ $style.Permalink }}">
 
 <!-- Icons -->
 {{ $icon := resources.Get "images/avatar.png" }}
